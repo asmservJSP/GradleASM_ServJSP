@@ -1,4 +1,14 @@
 apply plugin: 'java'
+apply plugin:'war'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
 
 sourceCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
@@ -13,7 +23,6 @@ sourceCompatibility = '1.8'
 if (!hasProperty('mainClass')) {
     ext.mainClass = ''
 }
-
 repositories {
     mavenCentral()
     // You may define additional repositories, or even remove "mavenCentral()".
@@ -27,4 +36,5 @@ dependencies {
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    providedCompile group:'javax', name:'javaee-web-api',version:'7.0'
 }
